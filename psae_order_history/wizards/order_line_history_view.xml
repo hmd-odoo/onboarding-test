@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="order_line_history_form" model="ir.ui.view">
+        <field name="name">order.line.history.form</field>
+        <field name="model">order.line.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="order.line.history">
+                    <group>
+                        <group>
+                            <field name="product_id" on_change="1" can_create="True" can_write="True" field_id="product_id_0"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="last_sale_order_line_ids" field_id="last_sale_order_line_ids_0" invisible = 'not last_sale_order_line_ids'>
+                            <tree string="Sales Order Lines" create="false">
+                                <field name="order_id" on_change="1"/>
+                                <field name="order_date" widget="date"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="last_purchase_order_line_ids" field_id="last_purchase_order_line_ids_0" invisible = 'not last_purchase_order_line_ids'>
+                            <tree create="false" default_order="order_id asc">
+                                <field name="order_id" widget="many2one" on_change="1"/>
+                                <field name="date_approve" widget="date"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group/>
+                    <group>
+                        <separator/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
